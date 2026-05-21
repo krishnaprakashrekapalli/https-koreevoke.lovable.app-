@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Allow: /product/
+Allow: /cart
+Allow: /wishlist
+Allow: /checkout
+
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+Sitemap: https://kore.fashion/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
