@@ -2,6 +2,8 @@
   "name": "koreevoke-ecommerce",
   "version": "1.0.0",
   "description": "E-commerce website built with React and Tailwind CSS",
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
