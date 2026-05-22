@@ -16,7 +16,7 @@ const marqueeWords = [
 ];
 
 export default function HomePage() {
-  const newArrivals = products.slice(0, 4);
+  const newArrivals = products.filter((p) => p.category === 'Activewear').slice(0, 4);
   const bestSellers = products;
 
   return (
