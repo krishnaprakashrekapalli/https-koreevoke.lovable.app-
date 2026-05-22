@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore.js';
+import { formatINR } from '../utils/currency.js';
 
 export default function CheckoutPage() {
   const items = useCartStore((s) => s.items);
@@ -14,15 +15,16 @@ export default function CheckoutPage() {
     address: '',
     city: '',
     zip: '',
-    country: 'United States',
+    country: 'India',
     cardNumber: '',
     expiry: '',
     cvc: '',
   });
 
-  const shipping = subtotal > 100 ? 0 : 9.95;
-  const tax = +(subtotal * 0.08).toFixed(2);
-  const total = +(subtotal + shipping + tax).toFixed(2);
+  // India: free shipping over ₹999, else flat ₹99. 18% GST.
+  const shipping = subtotal > 999 ? 0 : 99;
+  const tax = Math.round(subtotal * 0.18);
+  const total = subtotal + shipping + tax;
 
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
@@ -42,7 +44,7 @@ export default function CheckoutPage() {
         <h1 className="mt-6 text-3xl font-bold text-white">Order confirmed</h1>
         <p className="mt-2 text-muted">
           Thanks — your order <span className="font-semibold text-white">{confirmed.orderId}</span> for{' '}
-          <span className="font-semibold text-white">${confirmed.total.toFixed(2)}</span> is on the way.
+          <span className="font-semibold text-white">{formatINR(confirmed.total)}</span> is on the way.
         </p>
         <p className="mt-1 text-sm text-muted">
           We sent the receipt to your inbox. (Demo only — no real charge was made.)
@@ -77,7 +79,7 @@ export default function CheckoutPage() {
               <input className="input sm:col-span-2" placeholder="Full name" required value={form.name} onChange={update('name')} />
               <input className="input sm:col-span-2" placeholder="Address" required value={form.address} onChange={update('address')} />
               <input className="input" placeholder="City" required value={form.city} onChange={update('city')} />
-              <input className="input" placeholder="ZIP / Postal" required value={form.zip} onChange={update('zip')} />
+              <input className="input" placeholder="PIN code" required value={form.zip} onChange={update('zip')} />
               <input className="input sm:col-span-2" placeholder="Country" required value={form.country} onChange={update('country')} />
             </div>
           </fieldset>
@@ -103,26 +105,26 @@ export default function CheckoutPage() {
                 <span className="text-white/80">
                   {i.name} <span className="text-muted">× {i.quantity}</span>
                 </span>
-                <span className="text-white">${(i.price * i.quantity).toFixed(2)}</span>
+                <span className="text-white">{formatINR(i.price * i.quantity)}</span>
               </li>
             ))}
           </ul>
           <dl className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
             <div className="flex justify-between">
               <dt className="text-muted">Subtotal</dt>
-              <dd className="text-white">${subtotal.toFixed(2)}</dd>
+              <dd className="text-white">{formatINR(subtotal)}</dd>
             </div>
             <div className="flex justify-between">
               <dt className="text-muted">Shipping</dt>
-              <dd className="text-white">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</dd>
+              <dd className="text-white">{shipping === 0 ? 'Free' : formatINR(shipping)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-muted">Tax</dt>
-              <dd className="text-white">${tax.toFixed(2)}</dd>
+              <dt className="text-muted">GST (18%)</dt>
+              <dd className="text-white">{formatINR(tax)}</dd>
             </div>
             <div className="mt-2 flex justify-between border-t border-line pt-2 text-base font-semibold text-white">
               <dt>Total</dt>
-              <dd>${total.toFixed(2)}</dd>
+              <dd>{formatINR(total)}</dd>
             </div>
           </dl>
           <button type="submit" className="btn-primary mt-6 w-full">

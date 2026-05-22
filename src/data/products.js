@@ -2,7 +2,7 @@ export const products = [
   {
     id: 1,
     name: 'Compression Performance Tee',
-    price: 39.0,
+    price: 1099,
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
     category: 'Compression Tee',
     rating: 4.8,
@@ -19,7 +19,7 @@ export const products = [
   {
     id: 2,
     name: 'Active Training Track Pant',
-    price: 69.0,
+    price: 1499,
     image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&q=80',
     category: 'Track Pant',
     rating: 4.9,
@@ -36,7 +36,7 @@ export const products = [
   {
     id: 3,
     name: 'Ribbed Gym Vest',
-    price: 34.0,
+    price: 799,
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80',
     category: 'Gym Vest',
     rating: 4.7,
@@ -53,7 +53,7 @@ export const products = [
   {
     id: 4,
     name: 'Boxy Power T-Shirt',
-    price: 29.0,
+    price: 999,
     image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
     category: 'T-Shirt',
     rating: 4.8,

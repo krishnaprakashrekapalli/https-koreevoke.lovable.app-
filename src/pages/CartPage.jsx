@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore.js';
+import { formatINR } from '../utils/currency.js';
 
 export default function CartPage() {
   const items = useCartStore((s) => s.items);
@@ -8,9 +9,10 @@ export default function CartPage() {
   const clearCart = useCartStore((s) => s.clearCart);
   const subtotal = useCartStore((s) => s.subtotal());
 
-  const shipping = subtotal > 0 ? (subtotal > 100 ? 0 : 9.95) : 0;
-  const tax = +(subtotal * 0.08).toFixed(2);
-  const total = +(subtotal + shipping + tax).toFixed(2);
+  // India: free shipping over ₹999, else flat ₹99. 18% GST.
+  const shipping = subtotal > 0 ? (subtotal > 999 ? 0 : 99) : 0;
+  const tax = Math.round(subtotal * 0.18);
+  const total = subtotal + shipping + tax;
 
   if (items.length === 0) {
     return (
@@ -72,7 +74,7 @@ export default function CartPage() {
                       </div>
                     </td>
                     <td className="px-4 py-4 text-right font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatINR(item.price * item.quantity)}
                     </td>
                     <td className="px-4 py-4 text-right">
                       <button
@@ -101,19 +103,19 @@ export default function CartPage() {
           <dl className="mt-4 space-y-2 text-sm">
             <div className="flex justify-between">
               <dt className="text-muted">Subtotal</dt>
-              <dd className="text-white">${subtotal.toFixed(2)}</dd>
+              <dd className="text-white">{formatINR(subtotal)}</dd>
             </div>
             <div className="flex justify-between">
               <dt className="text-muted">Shipping</dt>
-              <dd className="text-white">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</dd>
+              <dd className="text-white">{shipping === 0 ? 'Free' : formatINR(shipping)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-muted">Tax (est.)</dt>
-              <dd className="text-white">${tax.toFixed(2)}</dd>
+              <dt className="text-muted">GST (18%)</dt>
+              <dd className="text-white">{formatINR(tax)}</dd>
             </div>
             <div className="mt-3 flex justify-between border-t border-line pt-3 text-base font-semibold text-white">
               <dt>Total</dt>
-              <dd>${total.toFixed(2)}</dd>
+              <dd>{formatINR(total)}</dd>
             </div>
           </dl>
           <Link to="/checkout" className="btn-primary mt-6 w-full">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getProductById } from '../data/products.js';
 import { useCartStore } from '../store/cartStore.js';
+import { formatINR } from '../utils/currency.js';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -43,7 +44,7 @@ export default function ProductPage() {
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-muted">{product.category}</p>
           <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">{product.name}</h1>
-          <p className="mt-3 text-2xl font-semibold text-white">${product.price.toFixed(2)}</p>
+          <p className="mt-3 text-2xl font-semibold text-white">{formatINR(product.price)}</p>
 
           <div className="mt-2 flex items-center gap-2 text-sm text-muted">
             <span>★ {product.rating}</span>

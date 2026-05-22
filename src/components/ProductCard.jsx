@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore.js';
+import { formatINR } from '../utils/currency.js';
 
 export default function ProductCard({ product }) {
   const addToCart = useCartStore((s) => s.addToCart);
@@ -33,9 +34,9 @@ export default function ProductCard({ product }) {
       <div className="mt-4">
         <h3 className="text-sm font-bold uppercase tracking-wide text-white">{product.name}</h3>
         <div className="mt-1 flex items-center gap-2 text-sm">
-          <span className="font-semibold text-white">${product.price.toFixed(2)}</span>
+          <span className="font-semibold text-white">{formatINR(product.price)}</span>
           <span className="text-muted line-through">
-            ${(product.price * 1.2).toFixed(2)}
+            {formatINR(Math.round(product.price * 1.2))}
           </span>
         </div>
       </div>
