@@ -15,7 +15,7 @@ export default function Logo({ className = '', title = 'KORE' }) {
       <polygon points="26,6 38,6 34,94 22,94" />
       {/* Upper diagonal — meets the vertical just to its right */}
       <polygon points="82,6 94,6 46,52 36,52" />
-      {/* Lower diagonal — mirrors the upper, with a small triangular gap between them at the vertex */}
+      {/* Lower diagonal — mirrors the upper, with a small triangular gap between them */}
       <polygon points="40,56 50,56 90,94 78,94" />
     </svg>
   );
