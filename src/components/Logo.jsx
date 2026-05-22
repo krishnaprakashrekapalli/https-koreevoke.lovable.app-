@@ -1,4 +1,4 @@
-// Stylized angular "K" mark — used in navbar, footer, favicon.
+// Stylized angular "K" mark — matched to the reference image.
 // Uses currentColor so it inherits text color from the parent.
 export default function Logo({ className = '', title = 'KORE' }) {
   return (
@@ -11,12 +11,12 @@ export default function Logo({ className = '', title = 'KORE' }) {
       fill="currentColor"
     >
       <title>{title}</title>
-      {/* Left vertical stroke (slightly angled inward at top & bottom) */}
-      <polygon points="22,8 38,8 38,92 22,92" />
-      {/* Upper diagonal stroke meeting the vertical at center-right */}
-      <polygon points="78,8 92,8 50,50 38,50" />
-      {/* Lower diagonal stroke mirroring the upper one */}
-      <polygon points="38,50 50,50 92,92 78,92" />
+      {/* Left vertical stroke — slim, slight forward slant */}
+      <polygon points="26,6 38,6 34,94 22,94" />
+      {/* Upper diagonal — meets the vertical just to its right */}
+      <polygon points="82,6 94,6 46,52 36,52" />
+      {/* Lower diagonal — mirrors the upper, with a small triangular gap between them at the vertex */}
+      <polygon points="40,56 50,56 90,94 78,94" />
     </svg>
   );
 }
