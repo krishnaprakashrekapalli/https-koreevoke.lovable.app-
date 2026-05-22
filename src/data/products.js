@@ -4,7 +4,7 @@ export const products = [
     name: 'Compression Performance Tee',
     price: 39.0,
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
-    category: 'Activewear',
+    category: 'Compression Tee',
     rating: 4.8,
     reviews: 214,
     description:
@@ -18,14 +18,14 @@ export const products = [
   },
   {
     id: 2,
-    name: 'Active Training Joggers',
+    name: 'Active Training Track Pant',
     price: 69.0,
     image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&q=80',
-    category: 'Activewear',
+    category: 'Track Pant',
     rating: 4.9,
     reviews: 312,
     description:
-      'Tapered training joggers with bonded ankle zips and a hidden phone pocket. Built for the gym, finished for the street.',
+      'Tapered training track pants with bonded ankle zips and a hidden phone pocket. Built for the gym, finished for the street.',
     specs: {
       Material: '88% Nylon / 12% Spandex',
       Fit: 'Tapered, mid-rise',
@@ -35,14 +35,14 @@ export const products = [
   },
   {
     id: 3,
-    name: 'Ribbed Training Vest',
+    name: 'Ribbed Gym Vest',
     price: 34.0,
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80',
-    category: 'Activewear',
+    category: 'Gym Vest',
     rating: 4.7,
     reviews: 178,
     description:
-      'Breathable ribbed vest with a relaxed armhole for unrestricted range of motion. Quick-drying and built to layer.',
+      'Breathable ribbed gym vest with a relaxed armhole for unrestricted range of motion. Quick-drying and built to layer.',
     specs: {
       Material: '92% Cotton / 8% Elastane',
       Fit: 'Relaxed',
@@ -52,19 +52,19 @@ export const products = [
   },
   {
     id: 4,
-    name: 'Pro Training Shorts',
-    price: 45.0,
-    image: 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&q=80',
-    category: 'Activewear',
+    name: 'Boxy Power T-Shirt',
+    price: 29.0,
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
+    category: 'T-Shirt',
     rating: 4.8,
-    reviews: 156,
+    reviews: 256,
     description:
-      'Lightweight 7-inch training shorts with an inner liner and side pockets. Built for sprint sessions, lifting, and recovery walks.',
+      'A boxy fit t-shirt cut from heavyweight cotton, made to move. Durable enough for training, clean enough for the street.',
     specs: {
-      Material: '100% Recycled Polyester',
-      Fit: 'Athletic, 7" inseam',
+      Material: '100% Heavyweight Cotton',
+      Fit: 'Boxy, drop shoulder',
       Care: 'Machine wash cold',
-      Origin: 'Made in Vietnam',
+      Origin: 'Made in Portugal',
     },
   },
 ];
@@ -72,3 +72,5 @@ export const products = [
 export function getProductById(id) {
   return products.find((p) => String(p.id) === String(id));
 }
+
+export const CATEGORIES = ['T-Shirt', 'Compression Tee', 'Track Pant', 'Gym Vest'];

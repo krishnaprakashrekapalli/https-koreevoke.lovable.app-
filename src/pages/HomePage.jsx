@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard.jsx';
 import Marquee from '../components/Marquee.jsx';
-import { products } from '../data/products.js';
+import { products, CATEGORIES } from '../data/products.js';
 
 const heroCards = [
   { label: 'GRIND SEASON', title: 'Train Hard. Stay Relentless.', sub: 'Breathable vest' },
@@ -16,8 +16,8 @@ const marqueeWords = [
 ];
 
 export default function HomePage() {
-  const newArrivals = products.filter((p) => p.category === 'Activewear').slice(0, 4);
-  const bestSellers = products;
+  const newArrivals = products.filter((p) => CATEGORIES.includes(p.category)).slice(0, 4);
+  const bestSellers = products.filter((p) => CATEGORIES.includes(p.category));
 
   return (
     <>
