@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore.js';
+import Logo from './Logo.jsx';
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -17,8 +18,8 @@ export default function Navbar() {
     <header className="sticky top-0 z-40">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         {/* Logo (small, top-left) */}
-        <Link to="/" className="display text-2xl text-white">
-          KORE
+        <Link to="/" aria-label="KORE — Home" className="block text-white">
+          <Logo className="h-9 w-9" />
         </Link>
 
         {/* Floating pill nav */}
