@@ -1,18 +1,29 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
+    <footer className="border-t border-line bg-primary">
+      {/* Mega brand mark */}
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <p className="display text-center text-7xl text-white sm:text-8xl md:text-[9rem]">
+          KORE
+        </p>
+        <p className="mt-2 text-center text-xs uppercase tracking-[0.3em] text-muted">
+          Move with purpose
+        </p>
+      </div>
+
+      <div className="mx-auto grid max-w-6xl gap-10 border-t border-line px-4 py-12 sm:grid-cols-4">
         <div>
-          <h3 className="text-lg font-bold">
-            KORE<span className="text-accent">.</span>
-          </h3>
-          <p className="mt-2 text-sm text-gray-600">
-            Considered fashion, built to last. Designed in studio, made in Europe.
-          </p>
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white">Know More</h4>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
+            <li>Terms &amp; Conditions</li>
+            <li>Returns &amp; Exchange</li>
+            <li>Privacy Policy</li>
+            <li>Cookie Preferences</li>
+          </ul>
         </div>
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Shop</h4>
-          <ul className="mt-3 space-y-2 text-sm text-gray-700">
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white">Shop</h4>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
             <li>New Arrivals</li>
             <li>Bestsellers</li>
             <li>Outerwear</li>
@@ -20,17 +31,28 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Support</h4>
-          <ul className="mt-3 space-y-2 text-sm text-gray-700">
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white">Support</h4>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
             <li>Contact</li>
-            <li>Shipping &amp; Returns</li>
+            <li>Shipping</li>
             <li>Size Guide</li>
             <li>FAQ</li>
           </ul>
         </div>
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white">Stay in the loop</h4>
+          <p className="mt-4 text-sm text-muted">
+            Drops, restocks, and quiet news. No spam.
+          </p>
+          <form className="mt-4 flex gap-2" onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="Email" className="input" />
+            <button type="submit" className="pill-light shrink-0">Join</button>
+          </form>
+        </div>
       </div>
-      <div className="border-t border-gray-200 py-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Koreevoke. All rights reserved.
+
+      <div className="border-t border-line py-4 text-center text-xs text-muted">
+        © {new Date().getFullYear()} KORE. All rights reserved. &nbsp;·&nbsp; Based worldwide.
       </div>
     </footer>
   );

@@ -1,47 +1,95 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore.js';
+
+const navItems = [
+  { to: '/', label: 'Home' },
+  { to: '/?explore', label: 'Explore fits' },
+  { to: '/?drops', label: 'Seasonal Drops' },
+  { to: '/?new', label: 'New in' },
+  { to: '/?about', label: 'About' },
+];
 
 export default function Navbar() {
   const totalItems = useCartStore((s) => s.totalItems());
-
-  const linkClass = ({ isActive }) =>
-    `text-sm font-medium transition hover:text-secondary ${
-      isActive ? 'text-secondary' : 'text-primary'
-    }`;
+  const { pathname, search } = useLocation();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-40">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link to="/" className="text-xl font-bold tracking-tight">
-          KORE<span className="text-accent">.</span>
+        {/* Logo (small, top-left) */}
+        <Link to="/" className="display text-2xl text-white">
+          KORE
         </Link>
-        <nav className="hidden gap-8 sm:flex">
-          <NavLink to="/" end className={linkClass}>
-            Shop
-          </NavLink>
-          <NavLink to="/cart" className={linkClass}>
-            Cart
-          </NavLink>
-          <NavLink to="/checkout" className={linkClass}>
-            Checkout
-          </NavLink>
+
+        {/* Floating pill nav */}
+        <nav className="hidden items-center gap-1 rounded-full border border-line bg-surface/80 p-1 backdrop-blur md:flex">
+          {navItems.map((item) => {
+            const isActive =
+              pathname === '/' && (item.to === '/' ? !search : search.includes(item.to.split('?')[1] ?? ''));
+            return (
+              <NavLink
+                key={item.label}
+                to={item.to}
+                end={item.to === '/'}
+                className={() =>
+                  `rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    isActive
+                      ? 'bg-white text-primary'
+                      : 'text-white/80 hover:text-white'
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            );
+          })}
         </nav>
-        <Link
-          to="/cart"
-          className="relative inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium hover:border-primary"
-          aria-label="Open cart"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293A1 1 0 005.414 17H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          Cart
-          {totalItems > 0 && (
-            <span className="absolute -right-2 -top-2 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-accent px-1 text-xs font-semibold text-white">
-              {totalItems}
-            </span>
-          )}
-        </Link>
+
+        {/* Right cluster: search / account / wishlist / bag */}
+        <div className="flex items-center gap-2">
+          <IconButton ariaLabel="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+            </svg>
+          </IconButton>
+          <IconButton ariaLabel="Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21a8 8 0 0 1 16 0" strokeLinecap="round" />
+            </svg>
+          </IconButton>
+          <IconButton ariaLabel="Wishlist">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+              <path d="M19 14c1.5-1.5 3-3.5 3-6a4 4 0 0 0-8 0 4 4 0 0 0-8 0c0 2.5 1.5 4.5 3 6l5 5 5-5Z" strokeLinejoin="round" />
+            </svg>
+          </IconButton>
+
+          <Link
+            to="/cart"
+            className="pill-dark"
+            aria-label="Open cart"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+              <path d="M6 7h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 7Z" />
+              <path d="M9 7V5a3 3 0 0 1 6 0v2" strokeLinecap="round" />
+            </svg>
+            BAG / {String(totalItems).padStart(2, '0')}
+          </Link>
+        </div>
       </div>
     </header>
+  );
+}
+
+function IconButton({ children, ariaLabel }) {
+  return (
+    <button
+      type="button"
+      aria-label={ariaLabel}
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-white transition hover:border-white"
+    >
+      {children}
+    </button>
   );
 }

@@ -1,25 +1,42 @@
 import { Link } from 'react-router-dom';
+import { useCartStore } from '../store/cartStore.js';
 
 export default function ProductCard({ product }) {
+  const addToCart = useCartStore((s) => s.addToCart);
+
+  const handleQuickAdd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product, 1);
+  };
+
   return (
     <Link
       to={`/product/${product.id}`}
-      className="group block overflow-hidden rounded-2xl border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-lg"
+      className="group relative block"
     >
-      <div className="aspect-[4/5] overflow-hidden bg-gray-100">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-elevated">
         <img
           src={product.image}
           alt={product.name}
           loading="lazy"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
+        <button
+          type="button"
+          onClick={handleQuickAdd}
+          className="pill-light absolute bottom-3 right-3 text-xs opacity-0 transition group-hover:opacity-100"
+        >
+          Quick Add +
+        </button>
       </div>
-      <div className="p-4">
-        <p className="text-xs uppercase tracking-wide text-gray-500">{product.category}</p>
-        <h3 className="mt-1 text-base font-semibold">{product.name}</h3>
-        <div className="mt-2 flex items-center justify-between">
-          <span className="text-lg font-bold">${product.price.toFixed(2)}</span>
-          <span className="text-xs text-gray-500">★ {product.rating}</span>
+      <div className="mt-4">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-white">{product.name}</h3>
+        <div className="mt-1 flex items-center gap-2 text-sm">
+          <span className="font-semibold text-white">${product.price.toFixed(2)}</span>
+          <span className="text-muted line-through">
+            ${(product.price * 1.2).toFixed(2)}
+          </span>
         </div>
       </div>
     </Link>

@@ -14,7 +14,7 @@ export default function ProductPage() {
   if (!product) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <h1 className="text-2xl font-bold">Product not found</h1>
+        <h1 className="text-2xl font-bold text-white">Product not found</h1>
         <Link to="/" className="btn-primary mt-6">Back to shop</Link>
       </div>
     );
@@ -30,34 +30,34 @@ export default function ProductPage() {
     <section className="mx-auto max-w-6xl px-4 py-12">
       <button
         onClick={() => navigate(-1)}
-        className="mb-6 text-sm text-gray-500 hover:text-primary"
+        className="mb-6 text-sm text-muted hover:text-white"
       >
         ← Back
       </button>
 
       <div className="grid gap-10 md:grid-cols-2">
-        <div className="overflow-hidden rounded-2xl bg-gray-100">
+        <div className="overflow-hidden rounded-2xl border border-line bg-surface">
           <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-gray-500">{product.category}</p>
-          <h1 className="mt-2 text-3xl font-bold sm:text-4xl">{product.name}</h1>
-          <p className="mt-3 text-2xl font-semibold">${product.price.toFixed(2)}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-muted">{product.category}</p>
+          <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">{product.name}</h1>
+          <p className="mt-3 text-2xl font-semibold text-white">${product.price.toFixed(2)}</p>
 
-          <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
+          <div className="mt-2 flex items-center gap-2 text-sm text-muted">
             <span>★ {product.rating}</span>
             <span aria-hidden>·</span>
             <span>{product.reviews} reviews</span>
           </div>
 
-          <p className="mt-6 text-base leading-relaxed text-gray-700">{product.description}</p>
+          <p className="mt-6 text-base leading-relaxed text-white/80">{product.description}</p>
 
           <div className="mt-8 flex items-center gap-4">
-            <div className="inline-flex items-center rounded-lg border border-gray-300">
+            <div className="inline-flex items-center rounded-lg border border-line bg-surface text-white">
               <button
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                className="px-3 py-2 text-lg"
+                className="px-3 py-2 text-lg hover:text-white/80"
                 aria-label="Decrease quantity"
               >
                 −
@@ -65,7 +65,7 @@ export default function ProductPage() {
               <span className="w-10 text-center text-sm font-medium">{qty}</span>
               <button
                 onClick={() => setQty((q) => q + 1)}
-                className="px-3 py-2 text-lg"
+                className="px-3 py-2 text-lg hover:text-white/80"
                 aria-label="Increase quantity"
               >
                 +
@@ -80,14 +80,14 @@ export default function ProductPage() {
           </div>
 
           <div className="mt-10">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
               Specifications
             </h2>
-            <dl className="mt-3 divide-y divide-gray-200 border-y border-gray-200">
+            <dl className="mt-3 divide-y divide-line border-y border-line">
               {Object.entries(product.specs).map(([k, v]) => (
                 <div key={k} className="flex justify-between py-3 text-sm">
-                  <dt className="text-gray-500">{k}</dt>
-                  <dd className="font-medium">{v}</dd>
+                  <dt className="text-muted">{k}</dt>
+                  <dd className="font-medium text-white">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -96,19 +96,19 @@ export default function ProductPage() {
       </div>
 
       {/* Reviews */}
-      <div className="mt-16 border-t border-gray-200 pt-10">
-        <h2 className="text-xl font-bold">Customer reviews</h2>
+      <div className="mt-16 border-t border-line pt-10">
+        <h2 className="text-xl font-bold text-white">Customer reviews</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {[
             { name: 'Ava M.', rating: 5, text: 'Beautiful quality, exactly as described. Fit is generous but flattering.' },
             { name: 'Daniel R.', rating: 4, text: 'Lovely material. Shipping took a few extra days but worth the wait.' },
           ].map((r) => (
-            <div key={r.name} className="rounded-xl border border-gray-200 p-5">
+            <div key={r.name} className="rounded-xl border border-line bg-surface p-5">
               <div className="flex items-center justify-between">
-                <p className="font-semibold">{r.name}</p>
-                <span className="text-sm">{'★'.repeat(r.rating)}</span>
+                <p className="font-semibold text-white">{r.name}</p>
+                <span className="text-sm text-white">{'★'.repeat(r.rating)}</span>
               </div>
-              <p className="mt-2 text-sm text-gray-700">{r.text}</p>
+              <p className="mt-2 text-sm text-white/80">{r.text}</p>
             </div>
           ))}
         </div>

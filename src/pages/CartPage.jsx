@@ -15,8 +15,8 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <section className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <h1 className="text-3xl font-bold">Your cart is empty</h1>
-        <p className="mt-2 text-gray-600">Start with a featured piece from the shop.</p>
+        <h1 className="text-3xl font-bold text-white">Your cart is empty</h1>
+        <p className="mt-2 text-muted">Start with a featured piece from the shop.</p>
         <Link to="/" className="btn-primary mt-8">Browse products</Link>
       </section>
     );
@@ -24,13 +24,13 @@ export default function CartPage() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl font-bold">Cart</h1>
+      <h1 className="text-3xl font-bold text-white">Cart</h1>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <div className="overflow-hidden rounded-xl border border-gray-200">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500">
+          <div className="overflow-hidden rounded-xl border border-line bg-surface">
+            <table className="w-full text-sm text-white">
+              <thead className="bg-elevated text-left text-xs uppercase tracking-wide text-muted">
                 <tr>
                   <th className="px-4 py-3">Product</th>
                   <th className="px-4 py-3">Qty</th>
@@ -38,22 +38,22 @@ export default function CartPage() {
                   <th className="px-4 py-3"></th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-line">
                 {items.map((item) => (
                   <tr key={item.id}>
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
                         <img src={item.image} alt={item.name} className="h-16 w-16 rounded object-cover" />
                         <div>
-                          <Link to={`/product/${item.id}`} className="font-medium hover:underline">
+                          <Link to={`/product/${item.id}`} className="font-medium text-white hover:underline">
                             {item.name}
                           </Link>
-                          <p className="text-xs text-gray-500">{item.category}</p>
+                          <p className="text-xs text-muted">{item.category}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-4">
-                      <div className="inline-flex items-center rounded-lg border border-gray-300">
+                      <div className="inline-flex items-center rounded-lg border border-line bg-primary">
                         <button
                           className="px-2 py-1"
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -77,7 +77,7 @@ export default function CartPage() {
                     <td className="px-4 py-4 text-right">
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-xs text-gray-500 hover:text-accent"
+                        className="text-xs text-muted hover:text-white"
                       >
                         Remove
                       </button>
@@ -90,28 +90,28 @@ export default function CartPage() {
 
           <button
             onClick={clearCart}
-            className="mt-4 text-xs text-gray-500 hover:text-accent"
+            className="mt-4 text-xs text-muted hover:text-white"
           >
             Clear cart
           </button>
         </div>
 
-        <aside className="h-fit rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold">Order summary</h2>
+        <aside className="h-fit rounded-xl border border-line bg-surface p-6">
+          <h2 className="text-lg font-semibold text-white">Order summary</h2>
           <dl className="mt-4 space-y-2 text-sm">
             <div className="flex justify-between">
-              <dt className="text-gray-600">Subtotal</dt>
-              <dd>${subtotal.toFixed(2)}</dd>
+              <dt className="text-muted">Subtotal</dt>
+              <dd className="text-white">${subtotal.toFixed(2)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-gray-600">Shipping</dt>
-              <dd>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</dd>
+              <dt className="text-muted">Shipping</dt>
+              <dd className="text-white">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-gray-600">Tax (est.)</dt>
-              <dd>${tax.toFixed(2)}</dd>
+              <dt className="text-muted">Tax (est.)</dt>
+              <dd className="text-white">${tax.toFixed(2)}</dd>
             </div>
-            <div className="mt-3 flex justify-between border-t border-gray-200 pt-3 text-base font-semibold">
+            <div className="mt-3 flex justify-between border-t border-line pt-3 text-base font-semibold text-white">
               <dt>Total</dt>
               <dd>${total.toFixed(2)}</dd>
             </div>
