@@ -1,13 +1,14 @@
 export default function Marquee({ words, className = '' }) {
   const content = words.join(' \u2022 ');
+  // Two identical tracks side-by-side; parent shifts -50% to loop seamlessly.
   return (
     <div className={`relative overflow-hidden border-y border-line bg-primary py-4 ${className}`}>
-      <div className="flex w-[200%] animate-marquee whitespace-nowrap">
-        <span className="display block w-1/2 px-6 text-3xl text-white/10 sm:text-5xl md:text-6xl">
-          {content} &bull; {content} &bull;{' '}
+      <div className="flex animate-marquee whitespace-nowrap">
+        <span className="display shrink-0 px-6 text-3xl text-white sm:text-5xl md:text-6xl">
+          {content} &nbsp;&bull;&nbsp;
         </span>
-        <span aria-hidden className="display block w-1/2 px-6 text-3xl text-white/10 sm:text-5xl md:text-6xl">
-          {content} &bull; {content} &bull;{' '}
+        <span aria-hidden className="display shrink-0 px-6 text-3xl text-white sm:text-5xl md:text-6xl">
+          {content} &nbsp;&bull;&nbsp;
         </span>
       </div>
     </div>

@@ -27,8 +27,8 @@ export default function HomePage() {
           {/* Big left card */}
           <div className="relative col-span-2 aspect-[16/10] overflow-hidden rounded-3xl bg-elevated md:aspect-auto md:h-[520px]">
             <img
-              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&q=80"
-              alt="Summer Essentials"
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80&auto=format&fit=crop"
+              alt="Summer Essentials — men training in activewear"
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/70" />
@@ -50,8 +50,8 @@ export default function HomePage() {
           {/* Right card */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-elevated md:aspect-auto md:h-[520px]">
             <img
-              src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&q=80"
-              alt="For Men: Summer"
+              src="https://images.unsplash.com/photo-1500468756762-a401b6f17b46?w=1000&q=80&auto=format&fit=crop"
+              alt="For Men: Summer — man training outdoors in summer activewear"
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

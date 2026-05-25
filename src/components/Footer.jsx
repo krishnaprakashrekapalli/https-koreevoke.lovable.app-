@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-line bg-primary">
       {/* Mega brand mark */}
       <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-16">
-        <Logo className="h-40 w-40 text-white sm:h-52 sm:w-52 md:h-64 md:w-64" />
+        <Logo className="h-40 w-auto sm:h-52 md:h-64" />
         <p className="mt-6 text-center text-xs uppercase tracking-[0.3em] text-muted">
           Move with purpose
         </p>
